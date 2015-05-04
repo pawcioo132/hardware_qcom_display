@@ -27,13 +27,13 @@
 #include "cb_utils.h"
 #include "sync/sync.h"
 
+using namespace qdutils;
 #ifdef NO_IOMMU
 #define HEAP_ID GRALLOC_USAGE_PRIVATE_UI_CONTIG_HEAP
 #else
 #define HEAP_ID GRALLOC_USAGE_PRIVATE_IOMMU_HEAP
 #endif
 
-using namespace qdutils;
 namespace qhwc {
 
 struct range {
@@ -125,8 +125,7 @@ unsigned int CopyBit::getRGBRenderingArea
     for (unsigned int i=0; i<(list->numHwLayers)-1; i++) {
          private_handle_t *hnd = (private_handle_t *)list->hwLayers[i].handle;
          if (hnd) {
-             if (BUFFER_TYPE_UI == hnd->bufferType &&
-                 list->hwLayers[i].compositionType != HWC_FRAMEBUFFER_TARGET) {
+             if (BUFFER_TYPE_UI == hnd->bufferType) {
                  getLayerResolution(&list->hwLayers[i], w, h);
                  renderArea += (w*h);
              }
