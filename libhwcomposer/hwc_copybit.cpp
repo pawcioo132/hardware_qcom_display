@@ -546,8 +546,7 @@ int CopyBit::allocRenderBuffers(int w, int h, int f)
     for (int i = 0; i < NUM_RENDER_BUFFERS; i++) {
         if (mRenderBuffer[i] == NULL) {
             ret = alloc_buffer(&mRenderBuffer[i],
-                               w, h, f,
-                               HEAP_ID);
+                               w, h, f, HEAP_ID);
         }
         if(ret < 0) {
             freeRenderBuffers();
